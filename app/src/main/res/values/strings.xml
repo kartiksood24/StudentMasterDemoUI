@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">schooluidemoproject</string>
+    <string name="welcome_to_school_enrollment_process">Welcome To School Enrollment Process</string>
+    <string name="profile_information">Profile Information</string>
+    <string name="photo_information">Photo Upload</string>
+    <string name="video_information">Video Upload</string>
+    <string name="adhaar_card_information">Photo Identity</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="next">Next</string>
+    <string name="date_of_birth">Date Of Birth</string>
+    <string name="address">Address</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="pincode">Pincode</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="add">Add</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="pick_an_image">Pick an Image</string>
+    <string name="passport_size_photo">Passport Size Photo</string>
+    <string name="ok_message">OK</string>
+    <string name="error_text">Error</string>
+    <string name="full_picture_standing">Full Picture Standing</string>
+</resources>

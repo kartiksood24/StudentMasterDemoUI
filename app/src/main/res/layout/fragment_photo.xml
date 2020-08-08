@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorGrey">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_16">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_16"
+                    android:text="@string/passport_size_photo"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/textsize_24" />
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/padding_16">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/passport_image"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="@dimen/margin_16"
+                        android:src="@drawable/avatar"
+                        app:civ_border_color="@color/colorPrimaryDark"
+                        app:civ_border_width="1dp"
+                        app:civ_circle_background_color="@color/colorPrimaryDark" />
+
+                    <LinearLayout
+                        android:id="@+id/choosepic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|bottom"
+                        android:layout_marginBottom="@dimen/margin_8"
+                        android:background="@drawable/layout_background"
+                        android:elevation="@dimen/margin_8"
+                        android:gravity="center"
+                        android:padding="4dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/ic_edit" />
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_16">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:gravity="center"
+                    android:text="@string/full_picture_standing"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/textsize_24" />
+
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/padding_16">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/full_pic_image"
+                        android:layout_width="300dp"
+                        android:layout_height="300dp"
+                        android:layout_marginTop="@dimen/margin_16"
+                        android:src="@drawable/full_body_avatar"
+                        app:civ_border_color="@color/colorPrimaryDark"
+                        app:civ_border_width="1dp"
+                        app:civ_circle_background_color="@color/colorPrimaryDark" />
+
+                    <LinearLayout
+                        android:id="@+id/choosepic_full_pic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|bottom"
+                        android:layout_marginEnd="@dimen/margin_32"
+                        android:layout_marginBottom="@dimen/margin_16"
+                        android:background="@drawable/layout_background"
+                        android:elevation="@dimen/margin_8"
+                        android:gravity="center"
+                        android:padding="@dimen/padding_8">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/ic_edit" />
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>
