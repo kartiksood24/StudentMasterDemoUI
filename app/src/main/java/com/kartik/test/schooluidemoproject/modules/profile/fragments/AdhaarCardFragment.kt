@@ -28,8 +28,14 @@ class AdhaarCardFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        binding.cameraPreview.resume()
         if (activity is StudentProfileActivity) {
             (activity as? StudentProfileActivity)?.setTitle(getString(R.string.adhaar_card_information))
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.cameraPreview.pause()
     }
 }

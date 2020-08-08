@@ -33,7 +33,7 @@ class UsersListActivity : AppCompatActivity() {
         binding.recyclerView.adapter = userListAdapter
     }
 
-    fun backPressed(view: View) {
+    fun backPressed(@Suppress("UNUSED_PARAMETER") view: View) {
         finish()
     }
 

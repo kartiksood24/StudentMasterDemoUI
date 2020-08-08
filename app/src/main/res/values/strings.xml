@@ -26,4 +26,6 @@
     <string name="photo">Photo</string>
     <string name="video">Video</string>
     <string name="identity">Identity</string>
+    <string name="adhaar_card_number">Adhaar Card Number:</string>
+    <string name="full_name">Full Name</string>
 </resources>

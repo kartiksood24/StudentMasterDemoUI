@@ -8,14 +8,49 @@
         android:clickable="true"
         android:focusable="true">
 
-        <TextView
+        <com.journeyapps.barcodescanner.CameraPreview
+            android:id="@+id/camera_preview"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_margin="@dimen/margin_16"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="In Progress"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/textsize_16"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/camera_preview">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:text="@string/full_name"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/textsize_16" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:background="@drawable/editext_background"
+                android:padding="@dimen/padding_16" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                android:text="@string/adhaar_card_number"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/textsize_16" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:background="@drawable/editext_background"
+                android:padding="@dimen/padding_16" />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
