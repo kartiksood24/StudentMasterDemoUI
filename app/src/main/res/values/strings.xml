@@ -22,4 +22,8 @@
     <string name="ok_message">OK</string>
     <string name="error_text">Error</string>
     <string name="full_picture_standing">Full Picture Standing</string>
+    <string name="profile">Profile</string>
+    <string name="photo">Photo</string>
+    <string name="video">Video</string>
+    <string name="identity">Identity</string>
 </resources>

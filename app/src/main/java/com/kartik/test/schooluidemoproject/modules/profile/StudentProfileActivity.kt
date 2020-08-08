@@ -1,11 +1,11 @@
 package com.kartik.test.schooluidemoproject.modules.profile
 
 import android.animation.ObjectAnimator
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -16,10 +16,7 @@ import com.kartik.test.schooluidemoproject.modules.profile.fragments.PersonalInf
 import com.kartik.test.schooluidemoproject.modules.profile.fragments.PhotoFragment
 import com.kartik.test.schooluidemoproject.modules.profile.fragments.VideoFragment
 import com.kartik.test.schooluidemoproject.modules.user.UsersListActivity
-import com.kartik.test.schooluidemoproject.utils.addFragment
-import com.kartik.test.schooluidemoproject.utils.getCurrentFragment
-import com.kartik.test.schooluidemoproject.utils.getPreviousFragment
-import com.kartik.test.schooluidemoproject.utils.popBackStack
+import com.kartik.test.schooluidemoproject.utils.replaceFragment
 
 class StudentProfileActivity : AppCompatActivity() {
     companion object {
@@ -40,7 +37,7 @@ class StudentProfileActivity : AppCompatActivity() {
         progressSizeIncrease = binding.seekbar.max / fragmentCount
         binding.seekbar.progress = progressSizeIncrease
         addPersonalInformationFragment()
-
+        initNavigationViewListener()
     }
 
     fun setTitle(title: String) {
@@ -48,50 +45,51 @@ class StudentProfileActivity : AppCompatActivity() {
     }
 
     private fun addPersonalInformationFragment() {
-        addFragment(PersonalInformationFragment.newInstance(), R.id.frame_container, true)
+        replaceFragment(PersonalInformationFragment.newInstance(), R.id.frame_container)
     }
 
-    fun addPhotoFragment() {
-        addFragment(PhotoFragment.newInstance(), R.id.frame_container, true)
+    private fun addPhotoFragment() {
+        replaceFragment(PhotoFragment.newInstance(), R.id.frame_container)
     }
 
     private fun addVideoFragment() {
-        addFragment(VideoFragment.newInstance(), R.id.frame_container, true)
+        replaceFragment(VideoFragment.newInstance(), R.id.frame_container)
     }
 
     private fun addAdhaarCardFragment() {
-        addFragment(AdhaarCardFragment.newInstance(), R.id.frame_container, true)
+        replaceFragment(AdhaarCardFragment.newInstance(), R.id.frame_container)
     }
 
     fun backPressed(@Suppress("UNUSED_PARAMETER") view: View) {
-        val getCurrentFragment = getCurrentFragment()
-        if (getCurrentFragment != null && getCurrentFragment is PersonalInformationFragment) {
-            finish()
-        } else if (getCurrentFragment != null) {
-            popBackStack()
-            getPreviousFragment()?.onResume()
-            count--
-            animateBar(false)
-        } else {
-            finish()
-        }
+        finish()
     }
 
     fun nextButtonClick(@Suppress("UNUSED_PARAMETER") view: View) {
-        count++
-        animateBar(true)
+        openFragment(true)
+    }
+
+    private fun openFragment(isCallingFromNextButton: Boolean) {
+        if (isCallingFromNextButton) {
+            count++
+        }
+        animateBar(isCallingFromNextButton)
+        val menu: Menu = binding.bottomNavigationView.menu
         when (count) {
             0 -> {
                 addPersonalInformationFragment()
+                menu.findItem(R.id.profile).isChecked = true
             }
             1 -> {
                 addPhotoFragment()
+                menu.findItem(R.id.photo).isChecked = true
             }
             2 -> {
                 addVideoFragment()
+                menu.findItem(R.id.video).isChecked = true
             }
             3 -> {
                 addAdhaarCardFragment()
+                menu.findItem(R.id.identity).isChecked = true
             }
             else -> {
                 UsersListActivity.startActivity(this)
@@ -100,20 +98,29 @@ class StudentProfileActivity : AppCompatActivity() {
         }
     }
 
-    fun animateBar(isIncreasing: Boolean) {
+    fun animateBar(isCallingFromNextButton: Boolean) {
+        val progressValue: Int = (count + 1) * progressSizeIncrease
         val anim = ObjectAnimator.ofArgb(
             binding.seekbar,
             "progress",
             binding.seekbar.progress,
-            if (isIncreasing) binding.seekbar.progress + progressSizeIncrease else binding.seekbar.progress - progressSizeIncrease
+            if (isCallingFromNextButton) {
+                binding.seekbar.progress + progressSizeIncrease
+            } else {
+                progressValue
+            }
         )
         anim.duration = 500
         anim.addUpdateListener { animation ->
             val animProgress = animation?.animatedValue
-            binding.seekbar.progress = if (isIncreasing) {
+            binding.seekbar.progress = if (isCallingFromNextButton) {
                 binding.seekbar.progress + animProgress.toString().toInt()
             } else {
-                binding.seekbar.progress - animProgress.toString().toInt()
+                if (progressValue > binding.seekbar.progress) {
+                    binding.seekbar.progress - animProgress.toString().toInt()
+                } else {
+                    binding.seekbar.progress + animProgress.toString().toInt()
+                }
             }
         }
         anim.start()
@@ -121,5 +128,35 @@ class StudentProfileActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         backPressed(binding.root)
+    }
+
+    private fun initNavigationViewListener() {
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener { item: MenuItem ->
+            return@setOnNavigationItemSelectedListener when (item.itemId) {
+                R.id.profile -> {
+                    count = 0
+                    openFragment(false)
+                    true
+                }
+                R.id.photo -> {
+                    count = 1
+                    openFragment(false)
+                    true
+                }
+                R.id.video -> {
+                    count = 2
+                    openFragment(false)
+                    true
+                }
+                R.id.identity -> {
+                    count = 3
+                    openFragment(false)
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
+        }
     }
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/profile" />
+    <item
+        android:id="@+id/photo"
+        android:icon="@drawable/ic_camera"
+        android:title="@string/photo" />
+    <item
+        android:id="@+id/video"
+        android:icon="@drawable/ic_video"
+        android:title="@string/video" />
+    <item
+        android:id="@+id/identity"
+        android:icon="@drawable/ic_identity"
+        android:title="@string/identity" />
+</menu>
